@@ -1,6 +1,7 @@
 import MainGrid from '../src/components/MainGrid';
 import Box from '../src/components/Box';
-import { AlurakutMenu } from '../src/lib/ConponentsAlura';
+import { AlurakutMenu, OrkutNostalgicIconSet } from '../src/lib/ConponentsAlura';
+import { ProfileRelationsBoxWrapper } from "../src/components/ProfileRelations"
 
 const ProfileSidebar = (props) => {
   return (
@@ -31,25 +32,30 @@ export default function Home() {
         </div>
         <div classNAme="welcomeArea" style={{ gridArea: "welcomeArea"}}>
           <Box>
-            Bem vindo 
+            <h1>
+              Bem vindo 
+            </h1>
+            <OrkutNostalgicIconSet />
           </Box>
         </div>
         <div calssName="profileRelationsArea" style={{ gridArea: "profileRelationsArea"}}>
-          <Box clan>
-            <h2>
-              Pessoas da comunidades
+          <ProfileRelationsBoxWrapper>
+            <h2 classNAme="smallTitle">
+              Pessoas da comunidades ({pessoasFavoritas.length})
             </h2>
             <ul>
               {pessoasFavoritas.map((current) => {
                 return (
-                  <a href={`/users/${current}`}>
+                  <li>
+                    <a href={`/users/${current}`} key={current}>
                       <img src={`https://github.com/${current}.png`} />
                       <span>{current}</span>
                     </a>
+                  </li>
                 )
               })};
             </ul>
-          </Box>
+          </ProfileRelationsBoxWrapper>
         </div>
 
       </MainGrid>
